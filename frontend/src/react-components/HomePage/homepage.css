@@ -1,0 +1,24 @@
+.bg_image {
+	background: url('../../img/home_bg4.jpg');
+	height: 100vh;
+	width: auto;
+
+	/* Center and scale the image nicely */
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.h1-font {
+	font-family: 'Lucida Console', monospace;
+	font-size: xxx-large;
+	color: #4d3900;
+}
+
+.search_box {
+	background-color: #e7ded0;
+	color: white;
+	outline: none !important;
+	margin-left: auto;
+	margin-right: auto;
+}

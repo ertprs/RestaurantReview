@@ -1,0 +1,76 @@
+body {
+	background-color: rgba(138, 103, 59, 0.5);
+}
+
+.card-custom {
+	width: 100% !important;
+	text-align: left;
+	display: inline-block;
+	justify-content: center;
+	align-items: center;
+	margin: 5% 5%;
+	background-color: rgb(218, 213, 212);
+}
+/* .card-custom:nth-child(3n-2) {
+	margin: 10% 10% 10% 5%;
+}
+
+.card-custom:nth-child(3n) {
+	margin: 10% 5% 10% 10%;
+} */
+
+.searchBox-custom {
+	margin-top: 2%;
+	margin-bottom: 3%;
+	display: flex;
+	justify-content: center;
+}
+
+.button-custom {
+	background-color: rgb(128, 112, 104);
+	color: white;
+}
+
+.container-custom {
+	margin-left: 2%;
+	margin-right: 10%;
+}
+
+.link-custom {
+	display: flex;
+	text-align: center;
+	justify-content: center;
+}
+
+.buttons-group {
+	justify-content: center;
+	align-items: center;
+	/* top: 10px; */
+	vertical-align: bottom !important;
+	/* margin-bottom: 0 !important; */
+}
+
+.card-body-custom {
+	/* height: 100%; */
+	position: relative;
+}
+
+.card-group-margin:nth-child(3n-2) {
+	margin-left: 5%;
+	/* background-color: green; */
+}
+
+.card-group-margin:nth-child(3n-1) {
+	margin: 0 7%;
+	/* background-color: purple; */
+}
+
+.card-group-margin:nth-child(3n) {
+	margin-right: 0px;
+	/* background-color: black; */
+}
+
+.card-group {
+	justify-content: center;
+	align-items: center;
+}

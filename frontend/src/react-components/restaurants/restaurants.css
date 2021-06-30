@@ -1,0 +1,10 @@
+.searchBox-custom {
+	margin-top: 2%;
+	display: flex;
+	justify-content: center;
+}
+
+.button-custom {
+	background-color: rgb(128, 112, 104);
+	color: white;
+}
