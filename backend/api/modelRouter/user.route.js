@@ -4,7 +4,7 @@ import UserCtrl from '../modelController/user.controller.js';
 const UserRouter = express.Router();
 
 UserRouter.route('/register').post((req, res) => {
-	console.log('user registration');
+	console.log('backend user registration');
 	return UserCtrl.apiRegisterUser(req, res);
 });
 

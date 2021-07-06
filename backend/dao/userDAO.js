@@ -23,6 +23,7 @@ export default class UserDAO {
 
 	static async registerUser(user_name, user_email, passwordString) {
 		console.log('registerUser in DAO');
+		console.log('user_email in DAO: ', user_email);
 		const query = {
 			email: user_email,
 		};
