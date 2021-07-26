@@ -1,8 +1,15 @@
 import React from 'react';
+import { useCookies } from 'react-cookie';
 
 import './navbar.css';
 
-function NavBar() {
+function NavBar({ auth }) {
+	const [cookies, setCookie, removeCookie] = useCookies(['u_token']);
+
+	function logout() {
+		removeCookie('u_token');
+	}
+
 	return (
 		<nav class="navbar navbar-expand navbar-dark navbar-custom">
 			<div class="container-fluid container">
@@ -42,26 +49,50 @@ function NavBar() {
 							</a>
 						</li>
 					</ul>
-					<ul class="navbar-nav float-right">
-						<li class="nav-item">
-							<a
-								class="nav-link active"
-								aria-current="page"
-								href="/login"
-							>
-								Login
-							</a>
-						</li>
-						<li class="nav-item">
-							<a
-								class="nav-link active"
-								aria-current="page"
-								href="/register"
-							>
-								Register
-							</a>
-						</li>
-					</ul>
+					{auth ? (
+						<ul class="navbar-nav float-right">
+							{/* <li class="nav-item">
+								<a
+									class="nav-link active"
+									aria-current="page"
+									href="/login"
+								>
+									Hello
+								</a>
+							</li> */}
+							<li class="nav-item">
+								<a
+									class="nav-link active"
+									aria-current="page"
+									onClick={logout}
+									href="/"
+								>
+									Logout
+								</a>
+							</li>
+						</ul>
+					) : (
+						<ul class="navbar-nav float-right">
+							<li class="nav-item">
+								<a
+									class="nav-link active"
+									aria-current="page"
+									href="/login"
+								>
+									Login
+								</a>
+							</li>
+							<li class="nav-item">
+								<a
+									class="nav-link active"
+									aria-current="page"
+									href="/register"
+								>
+									Register
+								</a>
+							</li>
+						</ul>
+					)}
 					{/* <form class="d-flex">
 						<input
 							class="form-control me-2"

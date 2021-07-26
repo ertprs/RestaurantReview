@@ -5,13 +5,18 @@ import './register.css';
 
 import registerIcon from '../../img/registerIcon.jpg';
 import RegisterDataService from '../../services/registerDataService.js';
+import { useHistory } from 'react-router-dom';
 
 function Register() {
+	let history = useHistory();
+
 	const [username, setUsername] = useState('');
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 	const [password2, setPassword2] = useState('');
 	const [emptyFieldError, setEmptyFieldError] = useState('');
+	const [emailError, setEmailError] = useState('');
+	const [passwordError, setPasswordError] = useState('');
 	const [passwordMismatchError, setPasswordMismatchError] = useState('');
 	const [registerError, setRegisterError] = useState('');
 
@@ -31,13 +36,19 @@ function Register() {
 	// }, []);
 
 	function validateForm() {
-		if (email.length * password.length * password2.length === 0) return 1;
-		if (password !== password2) return 2;
+		if (
+			email.length === 0 ||
+			password.length === 0 ||
+			password2.length === 0
+		)
+			return 1;
+		if (!email.includes('@')) return 2;
+		if (password.length < 8) return 3;
+		if (password !== password2) return 4;
 		return 0;
 	}
 
 	async function handleSubmit(event) {
-		console.log(event);
 		event.preventDefault();
 		const validationCode = validateForm();
 		if (validationCode === 0) {
@@ -47,38 +58,39 @@ function Register() {
 				password
 			);
 			if (response === false) setRegisterError('Register Failed');
+			else {
+				history.push('/login');
+			}
 		} else {
 			if (validationCode === 1) {
 				setEmptyFieldError('All fields must be filled');
 			}
 			if (validationCode === 2) {
-				setPasswordMismatchError('Please ensure the password match');
+				setEmailError(
+					'Please ensure the email is in a proper form (does not include @)'
+				);
+			}
+			if (validationCode === 3) {
+				setPasswordError(
+					'Password is too short (must be longer than 8)'
+				);
+			}
+
+			if (validationCode === 4) {
+				passwordMismatchError('Please make sure the passwords match');
 			}
 			return false;
 		}
 	}
 
-	function handleUsernameChange(event) {
-		console.log(event);
-		setUsername(event.target.value);
-		event.preventDefault();
-	}
+	function handleChange(event) {
+		const name = event.target.name;
+		const value = event.target.value;
+		if (name === 'username') setUsername(value);
+		if (name === 'email') setEmail(value);
+		if (name === 'password') setPassword(value);
+		if (name === 'password2') setPassword2(value);
 
-	function handleEmailChange(event) {
-		console.log(event);
-		setEmail(event.target.value);
-		event.preventDefault();
-	}
-
-	function handlePasswordChange(event) {
-		console.log(event);
-		setPassword(event.target.value);
-		event.preventDefault();
-	}
-
-	function handlePasswordChange2(event) {
-		console.log(event);
-		setPassword2(event.target.value);
 		event.preventDefault();
 	}
 
@@ -107,7 +119,8 @@ function Register() {
 										</text>
 										<input
 											value={username}
-											onChange={handleUsernameChange}
+											name="username"
+											onChange={handleChange}
 											required
 										/>
 									</label>
@@ -116,9 +129,10 @@ function Register() {
 											Email
 										</text>
 										<input
-											type="text"
+											type="email"
+											name="email"
 											value={email}
-											onChange={handleEmailChange}
+											onChange={handleChange}
 											required
 										/>
 									</label>
@@ -128,9 +142,10 @@ function Register() {
 											Password
 										</text>
 										<input
-											type="text"
+											type="password"
+											name="password"
 											value={password}
-											onChange={handlePasswordChange}
+											onChange={handleChange}
 											required
 										/>
 									</label>
@@ -140,9 +155,10 @@ function Register() {
 											Confirm Password
 										</text>
 										<input
-											type="text"
+											type="password"
+											name="password2"
 											value={password2}
-											onChange={handlePasswordChange2}
+											onChange={handleChange}
 											required
 										/>
 									</label>
