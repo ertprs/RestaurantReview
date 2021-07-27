@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Form from 'react-bootstrap/Form';
+// import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import LoginDataService from '../../services/loginDataService.js';
 import { useCookies } from 'react-cookie';
@@ -49,7 +49,6 @@ function Login({ loginCallback }) {
 	}
 
 	async function handleSubmit(event) {
-		console.log('handleSubmit');
 		event.preventDefault();
 
 		if (!validateEmail(email) || !validatePassword(password)) {
@@ -62,69 +61,71 @@ function Login({ loginCallback }) {
 			password
 		);
 
-		if (
-			loginResult.data.hasOwnProperty('Message') ||
-			loginResult.data.hasOwnProperty('NotFound')
-		) {
-			if (loginResult.data.hasOwnProperty('Message')) {
-				setLoginError(loginResult.data['Message']);
-			}
-
-			if (loginResult.data.hasOwnProperty('NotFound')) {
-				setLoginError(loginResult.data['NotFound']);
-			}
-		}
-
 		if (loginResult.data.hasOwnProperty('accessToken')) {
 			console.log('setting cookie');
 			setCookie('u_token', loginResult.data.accessToken, {
 				path: '/',
 				// httpOnly: true,
 			});
-			// localStorage.setItem('Authenticated', true);
 			loginCallback();
 			history.push('/');
-			// return <Redirect to="/" />;
+		} else {
+			if (
+				loginResult.data.hasOwnProperty('Message') ||
+				loginResult.data.hasOwnProperty('NotFound')
+			) {
+				if (loginResult.data.hasOwnProperty('Message')) {
+					setLoginError(loginResult.data['Message']);
+				}
+
+				if (loginResult.data.hasOwnProperty('NotFound')) {
+					setLoginError(loginResult.data['NotFound']);
+				}
+			}
 		}
 	}
 
 	return (
 		<div className="Login">
 			<p>{loginError}</p>
-			<Form onSubmit={handleSubmit}>
-				<Form.Group size="lg" controlId="email">
-					<Form.Label>Email</Form.Label>
-					<Form.Control
-						required
-						autoFocus
-						type="email"
-						value={email}
-						onChange={(e) => {
-							clearError();
-							setEmail(e.target.value);
-						}}
-					/>
-				</Form.Group>
-				<p>{emailError}</p>
-				<Form.Group size="lg" controlId="password">
-					<Form.Label>Password</Form.Label>
-					<Form.Control
-						type="password"
-						value={password}
-						onChange={(e) => setPassword(e.target.value)}
-						// onSubmit={(e) => validatePassword(e)}
-					/>
-				</Form.Group>
-				<p>{passwordError}</p>
-				<Button
-					block
-					size="lg"
-					type="submit"
-					// disabled={!validateForm()}
-				>
-					Login
-				</Button>
-			</Form>
+			<div class="form-container">
+				<form class="form-group" onSubmit={handleSubmit}>
+					<div class="form-field-group">
+						<label class="form-label">Email</label>
+						<input
+							class="form-input"
+							required
+							autoFocus
+							type="email"
+							value={email}
+							onChange={(e) => {
+								clearError();
+								setEmail(e.target.value);
+							}}
+						/>
+					</div>
+					<p>{emailError}</p>
+					<div class="form-field-group">
+						<label class="form-label">Password</label>
+						<input
+							class="form-input"
+							type="password"
+							value={password}
+							onChange={(e) => setPassword(e.target.value)}
+							// onSubmit={(e) => validatePassword(e)}
+						/>
+					</div>
+					<p>{passwordError}</p>
+					<Button
+						block
+						size="lg"
+						type="submit"
+						// disabled={!validateForm()}
+					>
+						Login
+					</Button>
+				</form>
+			</div>
 		</div>
 	);
 }

@@ -7,10 +7,16 @@ class LoginDataService {
 			email: user_email,
 			password: passwordString,
 		};
-		const result = loginAxios.post('/', body).then((r) => {
-			console.log('login result: ', r);
-			return r;
-		});
+		console.log('body: ', body);
+		const result = loginAxios.post('/', body);
+		// .then((r) => {
+		// 	console.log('login result: ', r);
+		// 	return r;
+		// })
+		// .catch((e) => {
+		// 	console.log('login request failed: ', e);
+		// });
+		console.log('result: ', result);
 		return result;
 	}
 }

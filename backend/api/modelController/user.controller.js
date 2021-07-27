@@ -15,8 +15,9 @@ export default class UserCtrl {
 
 	static async apiLoginUser(req, res, next) {
 		console.log('apiLoginUser');
+		console.log('req.body.user_email: ', req.body.user_email);
 		const result = await UserDAO.loginUser(
-			req.body.user_email,
+			req.body.email,
 			req.body.password
 		);
 		console.log('login result: ', result);

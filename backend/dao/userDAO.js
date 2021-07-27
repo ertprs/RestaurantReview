@@ -90,21 +90,10 @@ export default class UserDAO {
 	}
 
 	static async loginUser(user_email, passwordString) {
+		console.log('user_email: ', user_email);
 		const user = await this.userDB
 			.findOne({
 				email: user_email,
-			})
-			.then((findResult) => {
-				console.log('findResult: ', findResult);
-				if (findResult == null) {
-					//User does not exist
-					console.log('loginUser user does not exist');
-					return {
-						NotFound: 'User does not exist',
-					};
-				} else {
-					return findResult;
-				}
 			})
 			.catch((e) => {
 				console.log('loginUser finding user failed');
@@ -112,8 +101,12 @@ export default class UserDAO {
 					Error: 'finding user failed',
 				};
 			});
+
 		console.log('user: ', user);
-		if (user.hasOwnProperty('NotFound')) {
+
+		if (user == null) {
+			//User does not exist
+			console.log('loginUser user does not exist');
 			return {
 				NotFound: 'User does not exist',
 			};
