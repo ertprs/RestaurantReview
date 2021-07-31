@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-// import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
 import LoginDataService from '../../services/loginDataService.js';
 import { useCookies } from 'react-cookie';
 // import { Redirect } from 'react-router-dom';
 import { useHistory } from 'react-router-dom';
+
+import loginIcon from '../../img/signinIcon.png';
 
 import './login.css';
 
@@ -86,47 +86,69 @@ function Login({ loginCallback }) {
 	}
 
 	return (
-		<div className="Login">
+		<main className="Login">
 			<p>{loginError}</p>
 			<div class="form-container">
-				<form class="form-group" onSubmit={handleSubmit}>
-					<div class="form-field-group">
-						<label class="form-label">Email</label>
-						<input
-							class="form-input"
-							required
-							autoFocus
-							type="email"
-							value={email}
-							onChange={(e) => {
-								clearError();
-								setEmail(e.target.value);
+				<section class="loginBox">
+					<section class="loginBox-top">
+						<figure class="loginImg">
+							<img
+								src={loginIcon}
+								alt="login img"
+								width={120}
+								height={120}
+							/>
+						</figure>
+						<h4
+							style={{
+								fontWeight: '600',
+								fontSize: '27px',
+								color: 'rgb(36, 116, 171)',
 							}}
-						/>
-					</div>
-					<p>{emailError}</p>
-					<div class="form-field-group">
-						<label class="form-label">Password</label>
-						<input
-							class="form-input"
-							type="password"
-							value={password}
-							onChange={(e) => setPassword(e.target.value)}
-							// onSubmit={(e) => validatePassword(e)}
-						/>
-					</div>
-					<p>{passwordError}</p>
-					<Button
-						block
-						size="lg"
-						type="submit"
-						// disabled={!validateForm()}
-					>
-						Login
-					</Button>
-				</form>
+						>
+							Member Login
+						</h4>
+					</section>
+					<section class="loginBox-body">
+						<form
+							class="form-group form-group-login"
+							onSubmit={handleSubmit}
+						>
+							{/* <label class="form-label">Email</label> */}
+							<input
+								class="form-input-underlined form-input-login"
+								required
+								autoFocus
+								type="email"
+								placeholder="Email"
+								value={email}
+								onChange={(e) => {
+									clearError();
+									setEmail(e.target.value);
+								}}
+							/>
+
+							<p>{emailError}</p>
+							{/* <label class="form-label">Password</label> */}
+							<input
+								class="form-input-underlined form-input-login"
+								type="password"
+								placeholder="Password"
+								value={password}
+								onChange={(e) => setPassword(e.target.value)}
+								// onSubmit={(e) => validatePassword(e)}
+							/>
+							<p>{passwordError}</p>
+							<input
+								class="form-submit-btn form-submit-btn-login"
+								type="submit"
+								value="Login"
+							/>
+						</form>
+					</section>
+				</section>
 			</div>
-		</div>
+		</main>
 	);
 }
 

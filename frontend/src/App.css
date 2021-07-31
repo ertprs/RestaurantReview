@@ -1,3 +1,11 @@
+body {
+	background-color: rgba(240, 240, 240, 0.5);
+}
+
+main {
+	height: 93vh;
+}
+
 .App {
 	text-align: center;
 	font-family: 'Mukta', sans-serif;
@@ -16,6 +24,60 @@
 
 .App-link {
 	color: #61dafb;
+}
+
+.form-group {
+	/* align-items: center;
+	justify-content: center; */
+	display: inline-block;
+}
+
+.form-label {
+	display: block;
+	text-align: left;
+}
+
+.form-input-underlined {
+	background: transparent;
+	border: none;
+	border-bottom: 2px groove #dddddd;
+	font-size: 15px;
+}
+
+.form-input-underlined:hover {
+	border-bottom: 2px solid #646464;
+}
+
+.form-input-underlined:focus {
+	outline: none;
+	border-bottom: 2px solid #646464;
+}
+
+.form-input-box {
+	border-radius: 5px;
+	outline: none;
+	border: none;
+	/* background-color: rgba(196, 196, 196, 0.5); */
+}
+
+.form-input-box:focus {
+	/* background-color: rgba(228, 228, 228, 0.5); */
+	/* background-color: rgba(196, 196, 196, 0.5); */
+	border: solid rgba(153, 153, 153, 0.5);
+}
+
+.form-submit-btn {
+	display: flex;
+	border-radius: 5px;
+	background: #00d0bb; /*linear-gradient(to bottom, #fcfcfc, #eee);*/
+	color: #ffffff;
+	font-weight: 500;
+	border: 1px solid #d5d5d5;
+}
+
+.form-submit-btn:hover {
+	color: #ffffff;
+	background: #00e99a;
 }
 
 @keyframes App-logo-spin {

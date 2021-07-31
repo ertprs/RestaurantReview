@@ -3,7 +3,7 @@ import './homepage.css';
 
 function HomePage() {
 	return (
-		<div class="bg_image">
+		<div class=" container bg_image">
 			{/* <h1 class="pt-5 h1-font">Restaurant Review</h1> */}
 			{/* <svg
 				xmlns="http://www.w3.org/2000/svg"

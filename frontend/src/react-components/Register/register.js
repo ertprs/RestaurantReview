@@ -3,7 +3,7 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import './register.css';
 
-import registerIcon from '../../img/registerIcon.jpg';
+import registerIcon from '../../img/add-user.png';
 import RegisterDataService from '../../services/registerDataService.js';
 import { useHistory } from 'react-router-dom';
 
@@ -95,82 +95,94 @@ function Register() {
 	}
 
 	return (
-		<div className="registerPage">
-			<div className="card registerCard-custom">
-				<div className="card-body outer-card-body">
-					<div className="card card-custom2">
+		<main className="registerPage">
+			<div className="registerCard-custom">
+				<section class="registerBox-top">
+					<h4
+						style={{
+							fontWeight: '600',
+							fontSize: '27px',
+							color: 'rgb(70, 140, 189)',
+						}}
+					>
+						Register
+					</h4>
+				</section>
+				<section class="registerBox-body">
+					<figure class="registerBox-left">
 						<img
 							src={registerIcon}
-							alt="positive img"
-							width={230}
-							height={230}
+							alt="register img"
+							width={180}
+							height={180}
 							className="registerImg"
 						/>
-						<div className="card-body inner-card-body">
-							<div className="card-title">Welcome</div>
-							<div className="card-text registerBox">
-								<form
-									className="registerForm"
-									onSubmit={handleSubmit}
-								>
-									<label>
-										<text className="fieldLabel">
-											Username
-										</text>
-										<input
-											value={username}
-											name="username"
-											onChange={handleChange}
-											required
-										/>
-									</label>
-									<label>
-										<text className="fieldLabel">
-											Email
-										</text>
-										<input
-											type="email"
-											name="email"
-											value={email}
-											onChange={handleChange}
-											required
-										/>
-									</label>
-									<br></br>
-									<label>
-										<text className="fieldLabel">
-											Password
-										</text>
-										<input
-											type="password"
-											name="password"
-											value={password}
-											onChange={handleChange}
-											required
-										/>
-									</label>
-									<br></br>
-									<label>
-										<text className="fieldLabel">
-											Confirm Password
-										</text>
-										<input
-											type="password"
-											name="password2"
-											value={password2}
-											onChange={handleChange}
-											required
-										/>
-									</label>
-									<br></br>
-									<input type="submit" value="Submit" />
+					</figure>
+					<article class="registerBox-right">
+						<div className="registerForm-fields">
+							{/* <div className="card-title">Welcome</div> */}
+							<div className="registerForm">
+								<form onSubmit={handleSubmit}>
+									{/* <label class="form-label form-label-register">
+										Username
+									</label> */}
+									<input
+										class="form-input-box form-input-register"
+										placeholder="Username"
+										value={username}
+										name="username"
+										type="text"
+										onChange={handleChange}
+										required
+										autoFocus
+									/>
+
+									{/* <label class="form-label">Email</label> */}
+									<input
+										class="form-input-box form-input-register"
+										type="email"
+										name="email"
+										placeholder="Email"
+										value={email}
+										onChange={handleChange}
+										required
+									/>
+
+									{/* <label class="form-label">Password</label> */}
+									<input
+										class="form-input-box form-input-register"
+										type="password"
+										name="password"
+										placeholder="Password"
+										value={password}
+										onChange={handleChange}
+										required
+									/>
+
+									{/* <label class="form-label">
+										Confirm Password
+									</label> */}
+									<input
+										class="form-input-box form-input-register"
+										type="password"
+										name="password2"
+										placeholder="Confirm Password"
+										value={password2}
+										onChange={handleChange}
+										required
+									/>
+									<input
+										class="form-submit-btn form-submit-btn-register"
+										type="submit"
+										value="Register Now"
+									/>
 								</form>
 							</div>
 						</div>
-					</div>
-				</div>
+					</article>
+				</section>
 			</div>
-		</div>
+		</main>
 	);
 }
 

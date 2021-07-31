@@ -1,5 +1,64 @@
-body {
-	background-color: rgba(138, 103, 59, 0.5);
+.wrapper {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 70px 100px;
+}
+
+.restaurant-box {
+	border: solid black;
+	border-radius: 20px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	min-height: 180px;
+	height: fit-content;
+	width: 300px;
+	padding: 20px;
+}
+
+.btn-group-restaurant {
+}
+
+.restaurant-content {
+	position: relative;
+	text-align: left;
+	top: -10px;
+	left: 30px;
+	margin-bottom: 20px;
+}
+.text-restaurant {
+	display: block;
+	word-break: break-word;
+	white-space: initial;
+	width: 240px;
+}
+
+/* .text-cuisine {
+	display: block;
+}
+
+.text-address {
+	display: block;
+} */
+
+.btn-review {
+	padding: 10px;
+	color: black;
+	text-decoration: none;
+	border: 1px solid rgb(217, 215, 255);
+	border-radius: 15px;
+	background-color: rgb(217, 215, 255);
+	margin-right: 15px;
+}
+
+.btn-location {
+	margin-left: 15px;
+	padding: 10px;
+	color: black;
+	text-decoration: none;
+	border: 1px solid rgb(217, 215, 255);
+	border-radius: 15px;
+	background-color: rgb(217, 215, 255);
 }
 
 .card-custom {

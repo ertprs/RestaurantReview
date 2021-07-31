@@ -25,8 +25,6 @@ export default class RestaurantsDAO {
 		page = this.page,
 		restaurantsPerPage = this.restaurantsPerPage,
 	}) {
-		console.log('getRestaurants');
-		console.log('page: ', page);
 		let query = '';
 		if (filters) {
 			if ('name' in filters) {
@@ -61,6 +59,20 @@ export default class RestaurantsDAO {
 					e
 			);
 			return { restaurantsList: [], totalNumRestaurants: 0 };
+		}
+	}
+
+	static async getRestaurantInfo(id) {
+		const id_filter = {
+			restaurant_id: id,
+		};
+
+		try {
+			let document = await this.restaurants.findOne(id_filter);
+			console.log('doc: ', document);
+			return { document };
+		} catch (e) {
+			console.log('find fail?: ', e);
 		}
 	}
 }
